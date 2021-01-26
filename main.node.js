@@ -1,15 +1,13 @@
 const unirest = require("unirest");
 const chalk = require("chalk");
-const log = console.log;
 const dateFormat = require("dateformat");
-var figlet = require("figlet");
-
+const figlet = require("figlet");
 require("dotenv").config();
 
+const log = console.log;
+
 const now = new Date();
-
-now.setDate(now.getDate() + 2);
-
+now.setDate(now.getDate() + 1);
 const date = dateFormat(now, "yyyymmdd");
 
 const req = unirest(
@@ -43,10 +41,8 @@ req.end(function (res) {
   if (res.error) throw new Error(res.error);
 
   const premierLeagueObject = res.body.Stages.find(
-    (stage) => stage.Scd === "premier-league"
+    (stage) => stage.Scd === "premier-league" && stage.Ccd === "england"
   );
-
-  const matches = premierLeagueObject.Events;
 
   log(
     figlet.textSync("PL Games", {
@@ -54,9 +50,16 @@ req.end(function (res) {
       horizontalLayout: "default",
       verticalLayout: "default",
       width: 80,
-      whitespaceBreak: true,
     })
   );
+
+  if (!premierLeagueObject) {
+    log("No PL Games today.");
+    log("\n");
+    return;
+  }
+
+  const matches = premierLeagueObject.Events;
 
   log("\n");
 
