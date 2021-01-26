@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node main.node.js"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "dateformat": "^4.5.0",
