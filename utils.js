@@ -1,5 +1,4 @@
 const chalk = require("chalk");
-const figlet = require("figlet");
 
 const getTime = (timeStr) => {
   const time = timeStr.toString().substring(8, 12);
@@ -10,20 +9,11 @@ const getTime = (timeStr) => {
   return `${computedHour}.${min}`;
 };
 
-const getShirtColours = (obj) => [obj.Shrt.StC, obj.Shrt.Bs];
+const getShirtColours = (obj) => [obj.Shrt.Bs];
 
-const getBlobs = (primaryColour, secondaryColour) => {
+const getBlobs = (primaryColour) => {
   const blob = "█";
-  return [
-    chalk.hex(`#${primaryColour}`)(blob),
-    chalk.hex(`#${secondaryColour}`)(blob),
-  ];
+  return [chalk.hex(`#${primaryColour}`)(blob)];
 };
 
-const title = figlet.textSync("PL Games", {
-  font: "colossal",
-  horizontalLayout: "default",
-  verticalLayout: "default",
-  width: 80,
-});
-module.exports = { getTime, getShirtColours, getBlobs, title };
+module.exports = { getTime, getShirtColours, getBlobs };

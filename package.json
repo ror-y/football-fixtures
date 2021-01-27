@@ -4,13 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node main.node.js"
+    "start": "npx babel source.js -o cli.js && node cli.js"
   },
   "dependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
     "axios": "^0.21.1",
     "chalk": "^4.1.0",
     "dateformat": "^4.5.0",
     "dotenv": "^8.2.0",
-    "figlet": "^1.5.0"
+    "ink": "^3.0.8",
+    "ink-select-input": "^4.2.0",
+    "react": "^17.0.1"
   }
 }
