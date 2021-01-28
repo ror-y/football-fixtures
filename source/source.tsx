@@ -69,8 +69,8 @@ const Teams = ({ matchId }) => {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await axios.request(matchOptions(matchId));
-      if (error) throw new Error(error);
+      const { data } = await axios.request(matchOptions(matchId));
+      if (data.error) throw new Error(data.error);
 
       setHomeNames(getNames(data.Lu[0]));
       setAwayNames(getNames(data.Lu[1]));
@@ -117,9 +117,9 @@ const App = () => {
   useEffect(() => {
     if (isUsingApiData) {
       (async () => {
-        const { data, error } = await axios.request(fixuresOptions);
+        const { data } = await axios.request(fixuresOptions);
 
-        if (error) throw new Error(error);
+        if (data.error) throw new Error(data.error);
 
         const premierLeagueObject = data.Stages.find(
           (stage) => stage.Scd === "premier-league" && stage.Ccd === "england"
@@ -135,18 +135,18 @@ const App = () => {
         setMatches(matches);
       })();
     } else {
-      setMatches(mockData);
+      // setMatches(mockData);
     }
   }, []);
 
-  if (error) return "No PL Games ";
+  if (error) return <Text>"No PL Games "</Text>
 
   if (!matches) return null;
 
   return (
     <Box flexDirection="column">
       <Box marginBottom={2}>
-        <Text>⚽️ Today's PL Games ⚽️</Text>
+        <Text>⚽️ Today's PL Games1 ⚽️</Text>
       </Box>
       {activeView === "form" && (
         <Form
@@ -162,4 +162,5 @@ const App = () => {
   );
 };
 
+// tslint:disable-next-line
 render(<App />);

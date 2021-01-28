@@ -1,4 +1,4 @@
-const mockData = [
+export default [
   {
     Eid: 1234,
     Esd: 20210128010000,
@@ -49,4 +49,3 @@ const mockData = [
   },
 ];
 
-module.exports = mockData;
