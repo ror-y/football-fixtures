@@ -146,7 +146,7 @@ const App = () => {
   return (
     <Box flexDirection="column">
       <Box marginBottom={2}>
-        <Text>⚽️ Today's PL Games1 ⚽️</Text>
+        <Text>⚽️ Today's PL Games ⚽️</Text>
       </Box>
       {activeView === "form" && (
         <Form
