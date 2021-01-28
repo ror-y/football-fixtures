@@ -44,7 +44,7 @@ const Form = ({ matches, handleSelect }) => {
 const TeamList = ({ formation, names }) => {
   return (
     <Box flexDirection="column" marginRight={5}>
-      <Text>({formation}):</Text>
+      {formation && <Text>({formation}):</Text>}
       {names.map((name, idx) => (
         <Text key={idx}>{name}</Text>
       ))}
@@ -75,8 +75,16 @@ const Teams = ({ matchId }) => {
       setHomeNames(getNames(data.Lu[0]));
       setAwayNames(getNames(data.Lu[1]));
 
-      setHomeFormation(data.Lu[0].Fo.join("-"));
-      setAwayFormation(data.Lu[1].Fo.join("-"));
+      const hFormation = data.Lu[0].Fo;
+      const aFormation = data.Lu[1].Fo;
+
+      if (hFormation) {
+        setHomeFormation(hFormation.join("-"));
+      }
+
+      if (aFormation) {
+        setAwayFormation(aFormation.join("-"));
+      }
     })();
   }, []);
 
